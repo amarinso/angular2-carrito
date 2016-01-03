@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true
+  },
+  "files": [
+    "typings/main.d.ts",
+    "test/injector.spec.ts",
+    "test/sanity-test.spec.ts",
+    "src/app/app.spec.ts",
+    "src/app/app.ts",
+    "src/app/directives/x-large.ts",
+    "src/app/directives/x-large.spec.ts",
+    "src/app/providers/title.spec.ts",
+    "src/app/providers/title.ts",
+    "src/app/home/home.ts",
+    "src/app/home/home.spec.ts",
+    "src/app/search/productSearch.ts",
+    "src/app/search/strategyResults.ts",
+    "src/app/search/filterStrategy.ts",
+    "src/app/search/search.ts",
+    "src/app/search/results.ts",
+    "src/app/search/result.ts",
+    "src/app/cart/cart.ts",
+    "src/app/cart/cartService.ts",
+    "src/bootstrap.ts",
+    "src/vendor.ts"
+  ],
+  "compileOnSave": false
+}
