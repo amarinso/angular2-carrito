@@ -1,7 +1,7 @@
 /*
  * Angular 2 decorators and services
  */
-import { Component, EventEmitter, Input, View} from 'angular2/core';
+import { Inject, Component, EventEmitter, Input, View} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http} from 'angular2/http';
@@ -18,8 +18,7 @@ import {FORM_PROVIDERS} from 'angular2/common';
 @View({
     template: `
     <div>
-       <input placeholder="Todo" #todotext><br>
-        <button class="btn btn-block btn-success" (click)="addTodo(todotext)">Add Todo</button>
+        <button class="btn btn-block btn-success" (click)="loadTodo()">load Todo</button>
         <ul>
            <li *ngFor="#todo of todos">
              {{ todo }}
@@ -33,12 +32,17 @@ import {FORM_PROVIDERS} from 'angular2/common';
 export class App {
     todos: string[] = ['First Todo', 'Second Todo'];
 
-    constructor() { }
-
-    addTodo( todo ) {
-        this.todos.push( todo.value );
-        todo.value = '';
+    //inject the http service as instance variable
+    constructor(private http: Http) {
     }
+
+    loadTodo() {
+      // get the file, extract the json, and "consume" it with subscribe
+      this.http.get('todos.json')
+        .map( res => res.json())
+        .subscribe(todos => this.todos=todos );
+    }
+
 }
 
 //bootstrap( App );
