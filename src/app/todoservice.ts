@@ -18,5 +18,5 @@ export class TodoService {
       this.http.get('todos.json')
         .map( res => res.json())
         .subscribe(todos => this.todos=todos );
-    }
+      }
 }
