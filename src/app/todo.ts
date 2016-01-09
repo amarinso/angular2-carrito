@@ -6,11 +6,12 @@ import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
 
 @View({
   template: `
-    {{item}}
-  `,
+    {{index}} : {{item}}
+  `
 })
 
 export class Todo {
   @Input() item: string;
+  @Input() index: number;
 
 }
