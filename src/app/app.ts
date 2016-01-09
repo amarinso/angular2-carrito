@@ -3,9 +3,11 @@
  */
 import { Component, EventEmitter, Input, View} from 'angular2/core';
 import {NgFor} from 'angular2/common';
-import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
+import {RouterLink, RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http} from 'angular2/http';
 import {FORM_PROVIDERS} from 'angular2/common';
+import {Page1} from './page1';
+import {Page2} from './page2';
 
 
 /*
@@ -18,18 +20,27 @@ import {FORM_PROVIDERS} from 'angular2/common';
 @View({
     template: `
     <div>
-       <input placeholder="Todo" #todotext><br>
-        <button class="btn btn-block btn-success" (click)="addTodo(todotext)">Add Todo</button>
-        <ul>
-           <li *ngFor="#todo of todos">
-             {{ todo }}
-           </li>
-        </ul>
+      <a [routerLink]="['./Page1']">page1</a>
+      <a [routerLink]="['./Page2']">page2</a>
+      <div class="pages">
+        <router-outlet></router-outlet>
+      </div>
     </div>
     `,
-    directives: [NgFor]
-})
+    styles:[`
+      .pages {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin: 10px;
+      }
 
+    `]
+    directives: [NgFor, RouterLink, ROUTER_DIRECTIVES]
+})
+@RouteConfig([
+  {path:'/page1', component: Page1, name:'Page1'},
+  {path:'/page2', component: Page2, name:'Page2'}
+])
 export class App {
     todos: string[] = ['First Todo', 'Second Todo'];
 
