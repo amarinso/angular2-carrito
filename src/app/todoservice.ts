@@ -8,9 +8,12 @@ import {FORM_PROVIDERS} from 'angular2/common';
 @Injectable()
 export class TodoService {
 
+    id: number = Math.floor(Math.random()*10000);
+
     public todos: string[] = ['First Todo', 'Second Todo'];
 
     constructor(private http: Http) {
+      console.log('TodoService constructor:'+this.id);
     }
 
     loadTodo() {

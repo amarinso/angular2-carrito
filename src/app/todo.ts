@@ -1,4 +1,5 @@
 import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
+import {TodoService} from './todoservice';
 
 @Component({
   selector: 'todo'
@@ -6,11 +7,17 @@ import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
 
 @View({
   template: `
-    {{item}}
+    <div (click)="onClick()">{{item}}</div>
   `,
 })
 
 export class Todo {
   @Input() item: string;
 
+  constructor(private todoService: TodoService) {
+  }
+
+  onClick() {
+    this.todoService.loadTodo();
+  }
 }
