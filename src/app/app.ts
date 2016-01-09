@@ -23,8 +23,14 @@ import {Todos} from './todos';
         <button class="btn btn-block btn-success" (click)="loadTodo()">load Todo</button>
         <todos [items]="todoService.todos"></todos>
     </div>
+    <div class="done">This is an element with class 'done'</div>
     `,
-    directives: [Todos]
+    directives: [Todos],
+    styles: [`
+      .done {
+        color: red;
+      }
+    `]
 })
 
 export class App {
