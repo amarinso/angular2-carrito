@@ -1,14 +1,12 @@
-import { HostListener, Directive } from 'angular2/core';
+import { HostBinding, HostListener, Directive, Input } from 'angular2/core';
 
 @Directive({
-  selector: '[counter]',
-  properties: [
-    'index: index'
-  ]
+  selector: '[counter]'
 })
 export class Counter {
   numberOfClicks = 0;
-  index: number;
+
+  @Input() index: number;
 
   @HostListener('click', ['$event.target'])
   onClick(btn) {
