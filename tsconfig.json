@@ -13,6 +13,7 @@
     "test/sanity-test.spec.ts",
     "src/app/app.spec.ts",
     "src/app/app.ts",
+    "src/app/todoservice.ts",
     "src/bootstrap.ts",
     "src/vendor.ts"
   ],

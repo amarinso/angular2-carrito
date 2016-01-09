@@ -6,21 +6,22 @@ import {NgFor} from 'angular2/common';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
 import {Http} from 'angular2/http';
 import {FORM_PROVIDERS} from 'angular2/common';
-
+import {TodoService} from './todoservice';
 
 /*
  * App Component
  * Top Level Component
  */
 @Component({
-    selector: 'app'
-})
+    selector: 'app',
+    providers : [TodoService]
+  })
 @View({
     template: `
     <div>
         <button class="btn btn-block btn-success" (click)="loadTodo()">load Todo</button>
         <ul>
-           <li *ngFor="#todo of todos">
+           <li *ngFor="#todo of todoService.todos">
              {{ todo }}
            </li>
         </ul>
@@ -30,19 +31,13 @@ import {FORM_PROVIDERS} from 'angular2/common';
 })
 
 export class App {
-    todos: string[] = ['First Todo', 'Second Todo'];
 
-    //inject the http service as instance variable
-    constructor(private http: Http) {
-    }
+  constructor(@Inject(TodoService) private todoService: TodoService) {
 
-    loadTodo() {
-      // get the file, extract the json, and "consume" it with subscribe
-      this.http.get('todos.json')
-        .map( res => res.json())
-        .subscribe(todos => this.todos=todos );
-    }
+  }
+
+  loadTodo() {
+    this.todoService.loadTodo();
+  }
 
 }
-
-//bootstrap( App );
