@@ -1,4 +1,5 @@
 import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
+import {UpperCaseRegExp} from './uppercaseregexp';
 
 @Component({
   selector: 'todo'
@@ -6,8 +7,9 @@ import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
 
 @View({
   template: `
-    {{item}}
+    {{item | upperexep : '[aeiou]'}}
   `,
+  pipes: [ UpperCaseRegExp ]
 })
 
 export class Todo {

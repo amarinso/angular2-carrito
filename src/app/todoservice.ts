@@ -1,4 +1,3 @@
-
 import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
 import {NgFor} from 'angular2/common';
 import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
