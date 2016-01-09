@@ -2,7 +2,8 @@ import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
 import {TodoService} from './todoservice';
 
 @Component({
-  selector: 'todo'
+  selector: 'todo',
+  providers : [TodoService]
 })
 
 @View({
@@ -18,6 +19,8 @@ export class Todo {
   }
 
   onClick() {
+    console.log('onclick works')
     this.todoService.loadTodo();
+    console.log('Tasks not loaded because this isntance is not bount to Todos component!!')
   }
 }
