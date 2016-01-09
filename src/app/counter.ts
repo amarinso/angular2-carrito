@@ -8,8 +8,16 @@ export class Counter {
 
   @Input() index: number;
 
+  @HostBinding('title')
+  title: string;
+
+  constructor() {
+    this.title = "still not clicked :-(";
+  }
   @HostListener('click', ['$event.target'])
   onClick(btn) {
     console.log('todo'+this.index, 'number of clicks:', this.numberOfClicks++);
+    this.title = "number of clicks:" + this.numberOfClicks;
   }
+
 }

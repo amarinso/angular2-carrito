@@ -1,5 +1,5 @@
 import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
-import {CountClicks} from './countclicks';
+import {Counter} from './countclicks';
 
 @Component({
   selector: 'todo'

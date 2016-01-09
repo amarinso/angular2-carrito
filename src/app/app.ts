@@ -8,6 +8,7 @@ import {Http} from 'angular2/http';
 import {FORM_PROVIDERS} from 'angular2/common';
 import {TodoService} from './todoservice';
 import {Todos} from './todos';
+import {Counter} from './counter';
 
 /*
  * App Component
@@ -20,11 +21,11 @@ import {Todos} from './todos';
 @View({
     template: `
     <div>
-        <button class="btn btn-block btn-success" (click)="loadTodo()">load Todo</button>
+        <button counter class="btn btn-block btn-success" (click)="loadTodo()">load Todo</button>
         <todos [items]="todoService.todos"></todos>
     </div>
     `,
-    directives: [Todos]
+    directives: [Todos, Counter]
 })
 
 export class App {
