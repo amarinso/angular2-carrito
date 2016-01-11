@@ -1,9 +1,22 @@
-import { Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
+import { provide, Injectable, Component, EventEmitter, Input, View} from 'angular2/core';
 import {TodoService} from './todoservice';
+import {Http} from 'angular2/http';
 
 @Component({
   selector: 'todo',
-  providers : [TodoService]
+  providers : [ provide(TodoService, {
+    useFactory: (http: Http) => {
+      console.log('factory method');
+      if (TodoService.counter<2) {
+        console.log('create new!'+TodoService.counter)
+        return new TodoService( http);
+      }else{
+        return TodoService.instances[0];
+
+      }
+    },
+    deps:[Http]
+  })]
 })
 
 @View({
@@ -19,8 +32,6 @@ export class Todo {
   }
 
   onClick() {
-    console.log('onclick works')
-    this.todoService.loadTodo();
-    console.log('Tasks not loaded because this isntance is not bount to Todos component!!')
+    console.log('todoService instance:'+this.todoService.id);
   }
 }

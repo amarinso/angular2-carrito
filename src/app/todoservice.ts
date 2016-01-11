@@ -8,18 +8,23 @@ import {FORM_PROVIDERS} from 'angular2/common';
 @Injectable()
 export class TodoService {
 
-    id: number = Math.floor(Math.random()*10000);
+  public static counter: number = 0;
+  public static instances: TodoService[] = [];
 
-    public todos: string[] = ['First Todo', 'Second Todo'];
+  id: number;
 
-    constructor(private http: Http) {
-      console.log('TodoService constructor:'+this.id);
+  public todos: string[] = ['First Todo', 'Second Todo'];
+
+  constructor(private http: Http) {
+    this.id = TodoService.counter += 1;
+    TodoService.instances.push(this);
+    console.log('TodoService constructor:'+TodoService.counter);
+  }
+
+  loadTodo() {
+    // get the file, extract the json, and "consume" it with subscribe
+    this.http.get('todos.json')
+      .map( res => res.json())
+      .subscribe(todos => this.todos=todos );
     }
-
-    loadTodo() {
-      // get the file, extract the json, and "consume" it with subscribe
-      this.http.get('todos.json')
-        .map( res => res.json())
-        .subscribe(todos => this.todos=todos );
-      }
 }
