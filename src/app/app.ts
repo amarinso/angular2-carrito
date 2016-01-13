@@ -15,6 +15,7 @@ import { Component, EventEmitter, Input, View} from 'angular2/core';
     <div>
       <input [value]="time" style="width:300px">
       <!--<div [innerHtml]="time"></div>-->
+      <div>{{time}}</div>
     </div>
     `
 })
