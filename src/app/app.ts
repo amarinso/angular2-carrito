@@ -1,40 +1,31 @@
 /*
  * Angular 2 decorators and services
  */
-import {provide, Inject, Component, EventEmitter, Input, View} from 'angular2/core';
-import {NgFor} from 'angular2/common';
-import {RouteConfig, Router, ROUTER_DIRECTIVES} from 'angular2/router';
-import {Http} from 'angular2/http';
-import {FORM_PROVIDERS} from 'angular2/common';
-import {TodoService} from './todoservice';
-import {Todos} from './todos';
+import { Component, EventEmitter, Input, View} from 'angular2/core';
 
 /*
  * App Component
  * Top Level Component
  */
 @Component({
-  selector: 'app',
-  providers : [TodoService]
+  selector: 'app'
 })
 @View({
     template: `
     <div>
-        <button class="btn btn-block btn-success" (click)="loadTodo()">load Todo</button>
-        <todos [items]="todoService.todos"></todos>
+      <input [value]="time" style="width:300px">
+      <!--<div [innerHtml]="time"></div>-->
     </div>
-    `,
-    directives: [Todos]
+    `
 })
 
 export class App {
+  time = new Date();
 
-  constructor(@Inject(TodoService) private todoService: TodoService) {
-
-  }
-
-  loadTodo() {
-    this.todoService.loadTodo();
+  constructor() {
+    setInterval(()=>{
+      this.time = new Date();
+    }, 1000);
   }
 
 }
