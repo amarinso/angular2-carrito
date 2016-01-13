@@ -13,19 +13,16 @@ import { Component, EventEmitter, Input, View} from 'angular2/core';
 @View({
     template: `
     <div>
-      <input [value]="time" style="width:300px">
-      <!--<div [innerHtml]="time"></div>-->
+      <input (input)="onChange($event)">
+      <div>{{myvalue}}</div>
     </div>
     `
 })
 
 export class App {
-  time = new Date();
+  myvalue = 'Initial value';
 
-  constructor() {
-    setInterval(()=>{
-      this.time = new Date();
-    }, 1000);
+  onChange(ev) {
+    this.myvalue=ev.target.value;
   }
-
 }
