@@ -13,20 +13,11 @@ import { Component, EventEmitter, Input, View} from 'angular2/core';
 @View({
     template: `
     <div>
-      <input [value]="time" style="width:300px">
-      <!--<div [innerHtml]="time"></div>-->
-      <div>{{time}}</div>
+      <div>{{greeting}}</div>
     </div>
     `
 })
 
 export class App {
-  time = new Date();
-
-  constructor() {
-    setInterval(()=>{
-      this.time = new Date();
-    }, 1000);
-  }
-
+  greeting = 'hello world'
 }
